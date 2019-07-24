@@ -1,42 +1,45 @@
 {
-	"name": "var",
-	"displayName": "var",
-	"description": "Help get the proper variable name",
-	"version": "0.0.1",
+	"name": "completions-sample",
+	"displayName": "Completion Item Provider Sample",
+	"version": "0.0.2",
+	"publisher": "vscode-samples",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+	"bugs": {
+		"url": "https://github.com/Microsoft/vscode-extension-samples/issues"
+	},
 	"engines": {
-		"vscode": "^1.35.0"
+		"vscode": "^1.32.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:extension.helloWorld"
+		"*"
 	],
-	"keybindings": [{
-		"command": "px2rem-plus.convert",
-		"key": "ctrl+alt+r",
-		"when": "editorTextFocus"
-	}],
-	"main": "./extension.js",
-	"contributes": {
-		"commands": [{
-			"command": "extension.helloWorld",
-			"title": "vaar"
-		}]
-	},
+	"main": "./out/extension.js",
 	"scripts": {
-		"postinstall": "node ./node_modules/vscode/bin/install",
-		"test": "node ./node_modules/vscode/bin/test"
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -watch -p ./"
 	},
 	"devDependencies": {
-		"typescript": "^3.3.1",
-		"vscode": "^1.1.28",
-		"eslint": "^5.13.0",
-		"@types/node": "^10.12.21",
-		"@types/mocha": "^2.2.42"
+		"@types/node": "^10.12.18",
+		"tslint": "^5.16.0",
+		"typescript": "^3.5.1",
+		"@types/vscode": "^1.32.0"
 	},
 	"dependencies": {
+		"@types/axios": "^0.14.0",
+		"@types/google-translate-api": "^2.3.0",
+		"google-translate-api": "^2.3.0",
+		"google-translate-cn-api": "^1.0.5",
+		"google-translate-token": "^1.0.0",
 		"md5": "^2.2.1",
+		"translate-api": "^0.3.18",
 		"urlencode": "^1.1.0"
 	}
 }
