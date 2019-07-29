@@ -5,7 +5,7 @@
 import axios from 'axios';
 import * as vscode from 'vscode';
 const Translate = require('../baidu_translate.js');
-
+var nodejieba = require("nodejieba");
 // import 'google-translate-api';
 const translate = require('google-translate-api');
 var text = "flower";
@@ -16,7 +16,7 @@ interface axiosRes {
 }
 
 export function activate(context: vscode.ExtensionContext) {
-
+	nodejieba.load();
 	let provider1 = vscode.languages.registerCompletionItemProvider('plaintext', {
 
 		provideCompletionItems(document: vscode.TextDocument, position: vscode.Position, token: vscode.CancellationToken, context: vscode.CompletionContext) {
@@ -34,7 +34,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// the `commitCharacters`-property is set which means that the completion will
 			// be inserted and then the character will be typed.
 			const commitCharacterCompletion = new vscode.CompletionItem('var');
-			commitCharacterCompletion.commitCharacters = [' '];
+			commitCharacterCompletion.commitCharacters = ['z'];
 			commitCharacterCompletion.documentation = new vscode.MarkdownString('Press `.` to get `console.`');
 
 			// a completion item that retriggers IntelliSense when being accepted,
@@ -61,6 +61,8 @@ export function activate(context: vscode.ExtensionContext) {
 		{
 		async 	provideCompletionItems(document: vscode.TextDocument, position: vscode.Position) {
 
+			var result =  await nodejieba.cut("获得对应的列表位置元素");
+			console.log(result);
 				//截取 'var ' 后的字符串  。需要翻译的文本s
 				if (position.character >= 4) { 
 						//检测输入是否是汉字  先删除  正则测试方法 reg.test(str);
@@ -89,7 +91,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			}
 		},
-		' ' // triggered whenever a '.' is being typed
+		'z' // triggered whenever a '' is being typed
 	);
 
 	context.subscriptions.push(provider1, provider2);
