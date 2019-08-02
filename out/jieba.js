@@ -1,8 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var nodejieba = require("nodejieba");
-function fenci(str) {
-    var result = nodejieba.cut(str);
-    return result;
-}
-exports.fenci = fenci;
+// var nodejieba = require("nodejieba");
+// export function fenci(str: string):object { 
+// var result = nodejieba.cut(str);
+// return result;
+// }
