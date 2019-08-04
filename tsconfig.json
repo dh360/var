@@ -10,5 +10,6 @@
 	"exclude": [
 		"node_modules",
 		".vscode-test"
-	]
+	],
+	"indent": [true, "tabs", 2]
 }
